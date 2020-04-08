@@ -9,11 +9,11 @@ services:
     environment: 
     - ASPNETCORE_ENVIRONMENT=Development
     - ASPNETCORE_URLS=http://0.0.0.0:5000
-    - MYWEBAPI_URL=http://mywebapi1
+    - MYWEBAPI_URL=http://mywebapi
     ports:
     - "8080:5000"
 
-  mywebapi1:
+  mywebapi:
     image: ${DOCKER_REGISTRY-}mywebapi
     build:
       context: ./MyWebApi
