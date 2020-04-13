@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityServer
 {
@@ -13,17 +14,19 @@ namespace IdentityServer
     {
         public IWebHostEnvironment Environment { get; }
 
-        public Startup(IWebHostEnvironment environment)
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Environment = environment;
+            Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
             // uncomment, if you want to add an MVC-based UI
             //services.AddControllersWithViews();
 
-            var builder = services.AddIdentityServer()
+            var builder = services.AddIdentityServer(x => x.IssuerUri = Configuration["IDENTITY_ISSUER"])
                 //.AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryClients(Config.Clients);
