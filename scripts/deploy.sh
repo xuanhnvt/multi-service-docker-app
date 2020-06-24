@@ -1,6 +1,6 @@
 #!/bin/bash
 
-3IMAGE=${1}
+IMAGE=${1}
 TAG=${2}
 PASS=${3}
 
