@@ -27,7 +27,6 @@ pipeline {
                 sh "./scripts/push.sh ${BUILD_ID} ${PASS}"
             }
         }
-
         stage('Deploy') {
             steps {
                 sh "./scripts/deploy.sh ${BUILD_ID} ${PASS}"

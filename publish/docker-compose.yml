@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  webfrontend:
+    image: ${DOCKER_REGISTRY:-xuanhnvt}/webfrontend:${BUILD_ID}
+    networks:
+    - backend
+    depends_on:
+    - mywebapi
+
+  mywebapi:
+    image: ${DOCKER_REGISTRY:-xuanhnvt}/mywebapi:${BUILD_ID}
+    networks:
+      - backend
+    depends_on:
+    - identityserver
+  
+  identityserver:
+    image: ${DOCKER_REGISTRY:-xuanhnvt}/identityserver:${BUILD_ID}
+    networks:
+      - backend
+networks:
+  backend:
